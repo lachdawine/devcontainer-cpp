@@ -1,19 +1,27 @@
 name: Docker Image CI
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to build on'
+        required: true
+        default: 'main'
 
 jobs:
 
-  build:
+  build-and-push:
 
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v4
+    - uses: docker/login-action@v2
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+        
     - name: Build the Docker image
       run: docker build .devcontainer --file .devcontainer/Dockerfile --tag ghcr.io/lachdawine/devcontainer-cpp:latest
     - name: Push the Docker image
