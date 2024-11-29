@@ -1,0 +1,22 @@
+{
+    "name": "C++ Devcontainer",
+"image": "mcr.microsoft.com/vscode/devcontainers/cpp",
+    "mounts": [
+        "source=${localWorkspaceFolder}/,target=/workspace,type=bind,consistency=cached"
+    ],
+    "workspaceFolder": "/workspace",
+    "extensions": [
+        "ms-vscode.cpptools",
+        "ms-vscode.cmake-tools"
+    ],
+    "settings": {
+        "terminal.integrated.shell.linux": "/bin/zsh"
+    },
+    "runArgs": [
+        "--cap-add=SYS_PTRACE",
+        "--security-opt",
+        "seccomp=unconfined"
+    ],
+    "postCreateCommand": "cmake -S . -B build",
+    "remoteUser": "vscode"
+}
