@@ -1,5 +1,5 @@
 {
-	"image": "ghcr.io/lachdawine/devcontaijner-cpp:latest",
+	"image": "ghcr.io/lachdawine/devcontainer-cpp:latest",
 	"features": {
 		"ghcr.io/devcontainers/features/git:1": {
             "version": "latest",
