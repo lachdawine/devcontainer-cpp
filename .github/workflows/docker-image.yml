@@ -2,6 +2,11 @@ name: Docker Image CI
 
 on:
   workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag for the Docker image'
+        required: true
+        default: 'latest'
 
 jobs:
 
@@ -33,5 +38,5 @@ jobs:
         file: .devcontainer/Dockerfile
         platforms: ${{ matrix.platforms }}
         push: true
-        tags: ghcr.io/lachdawine/devcontainer-cpp:latest
-        outputs: type=image, name=lachdawine/devcontainer-cpp:latest,repository=ghcr.io/lachdawine/devcontainer-cpp,registry=ghcr.io,annotation-index.org.opencontainers.image.description=cpp devcontainer multi-arch
+        tags: ghcr.io/lachdawine/devcontainer-cpp:latest ghcr.io/lachdawine/devcontainer-cpp:${{ inputs.tag }}
+        outputs: type=image,name=target,annotation-index.org.opencontainers.image.description=devcontainer-cpp
