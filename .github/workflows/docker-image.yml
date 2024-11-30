@@ -43,4 +43,3 @@ jobs:
           org.opencontainers.image.title=devcontainer-cpp
           org.opencontainers.image.description="Development container for C++ projects with official LLVM-18, based on the official Visual Studio Code devcontainer image."
           org.opencontainers.image.licenses=MIT
-          org.opencontainers.image.source=${{ github.repository }}
