@@ -38,8 +38,7 @@ jobs:
         file: .devcontainer/Dockerfile
         platforms: ${{ matrix.platforms }}
         push: true
-        image: ghcr.io/lachdawine/devcontainer-cpp
-        tags: latest,${{ inputs.tag }}
+        tags: ghcr.io/lachdawine/devcontainer-cpp:latest,ghcr.io/lachdawine/devcontainer-cpp:${{ inputs.tag }}
         labels: |
           org.opencontainers.image.title=devcontainer-cpp
           org.opencontainers.image.description="Development container for C++ projects with official LLVM-18, based on the official Visual Studio Code devcontainer image."
