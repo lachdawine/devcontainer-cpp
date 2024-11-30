@@ -1,9 +1,5 @@
 {
-	"build": {
-		"dockerfile": "./Dockerfile",
-		"context": "."
-	},
-
+	"image": "ghcr.io/lachdawine/devcontaijner-cpp:latest",
 	"features": {
 		"ghcr.io/devcontainers/features/git:1": {
             "version": "latest",
@@ -35,7 +31,8 @@
 				"ms-vscode.cpptools",
 				"ms-vscode.cmake-tools",
 				"vadimcn.vscode-lldb",
-				"ms-vscode.cpptools-extension-pack"
+				"ms-vscode.cpptools-extension-pack",
+				"github.vscode-github-actions"
 			]
 		}
 	},
