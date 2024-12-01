@@ -1,5 +1,7 @@
 ARG VARIANT=debian-12
 FROM mcr.microsoft.com/devcontainers/base:${VARIANT}
+LABEL org.opencontainers.image.description="C++ development environment with clang and llvm"
+LABEL org.opencontainers.image.title="devcontainer-cpp"
 USER root
 
 # Install llvm and clang from llvm.org
