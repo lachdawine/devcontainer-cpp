@@ -38,7 +38,7 @@ jobs:
           labels: |
             maintainer=artnim
             org.opencontainers.image.title=devcontainer-cpp
-            org.opencontainers.image.description=
+            org.opencontainers.image.description=A C/C++ devcontainer with LLVM 18
             org.oencontainers.image.vendor=artnim.io
 
       - name: Set up QEMU
