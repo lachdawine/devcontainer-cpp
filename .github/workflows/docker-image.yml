@@ -26,8 +26,9 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: ${{ env.REGISTRY_IMAGE }}
-          dockerfile: .devcontainer/Dockerfile
-          context: .devcontainer/
+          annotations: |
+            org.opencontainers.image.title=Devcontainer C++
+            org.opencontainers.image.description=Devcontainer for C++ development
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -46,6 +47,8 @@ jobs:
         id: build
         uses: docker/build-push-action@v6
         with:
+          dockerfile: .devcontainer/Dockerfile
+          context: .devcontainer/
           platforms: ${{ matrix.platform }}
           labels: ${{ steps.meta.outputs.labels }}
           outputs: type=image,name=${{ env.REGISTRY_IMAGE }},push-by-digest=true,name-canonical=true,push=true
