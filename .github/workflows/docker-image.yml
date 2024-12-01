@@ -34,6 +34,12 @@ jobs:
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}}
             type=sha
+            type=raw,value=latest,enable={{ is_default_branch }}
+          labels: |
+            maintainer=artnim
+            org.opencontainers.image.title=devcontainer-cpp
+            org.opencontainers.image.description=
+            org.oencontainers.image.vendor=artnim.io
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -106,4 +112,4 @@ jobs:
 
       - name: Inspect image
         run: |
-          docker buildx imagetools inspect ${{ env.REGISTRY_IMAGE }}:${{ steps.meta.outputs.version }}name: Docker Image CI
+          docker buildx imagetools inspect ${{ env.REGISTRY_IMAGE }}:${{ steps.meta.outputs.version }}
