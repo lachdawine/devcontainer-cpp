@@ -70,7 +70,7 @@ jobs:
           file: .devcontainer/Dockerfile
           platforms: ${{ matrix.platform }}
           labels: ${{ steps.meta.outputs.labels }}
-          outputs: type=image,name=${{ env.REGISTRY_IMAGE }},push-by-digest=true,name-canonical=true,push=true,annotation-index.org.opencontainers.image.description=${{ steps.meta.outputs.labels.org.opencontainers.image.description }}
+          outputs: type=image,name=${{ env.REGISTRY_IMAGE }},push-by-digest=true,name-canonical=true,push=true,annotation-index.org.opencontainers.image.description=A C/C++ devcontainer with LLVM 18
 
       - name: Export digest
         run: |
@@ -106,21 +106,6 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: ${{ env.REGISTRY_IMAGE }}
-          tags: |
-            type=schedule
-            type=ref,event=branch
-            type=ref,event=pr
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
-            type=semver,pattern={{major}}
-            type=sha
-            type=raw,value=latest,enable={{ is_default_branch }}
-          labels: |
-            maintainer=artnim
-            org.opencontainers.image.title=devcontainer-cpp
-            org.opencontainers.image.description=A C/C++ devcontainer with LLVM 18
-            org.oencontainers.image.vendor=artnim.io
-
 
       - name: Login to ghcr.io
         uses: docker/login-action@v3
@@ -133,7 +118,6 @@ jobs:
         working-directory: /tmp/digests
         run: |
           docker buildx imagetools create $(jq -cr '.tags | map("-t " + .) | join(" ")' <<< "$DOCKER_METADATA_OUTPUT_JSON") \
-            --annotation index.org.opencontainers.image.description="${{ steps.meta.outputs.labels.org.opencontainers.image.description }}" \
             $(printf '${{ env.REGISTRY_IMAGE }}@sha256:%s ' *)
 
       - name: Inspect image
