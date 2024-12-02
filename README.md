@@ -1,12 +1,6 @@
-# Hello World Devcontainer
+# C/C++ Devcontainer Image with LLVM-18
 
-## Tools die benötigt werden
+## Motivation
 
-* *Docker Desktop* oder alternativ *Rancher Desktop*
-* In vscode die Extension *Dev Containers*
-
-## How
-
-Ist die *Dev Containers* Extension installiert fragt vscode schon beim Öffnen des *Workspaces* ob es den Ordner im *Devcontainer* öffnen darf...
-
-Ich mach gerne eine Demo...
+The stock *cpp* devcontainer image uses *LLVM-14* which is quite a bit outdated. Used the *Dockerfile* of that image and build up on the debian variant.
+Using the convenience shellscript from *LLVM* to install LLVM-18.
