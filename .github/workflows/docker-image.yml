@@ -133,7 +133,7 @@ jobs:
         working-directory: /tmp/digests
         run: |
           docker buildx imagetools create $(jq -cr '.tags | map("-t " + .) | join(" ")' <<< "$DOCKER_METADATA_OUTPUT_JSON") \
-            --annotation index.org.opencontainers.image.description="${{ steps.meta.outputs.labels.org.opencontainers.image.description }}" \
+            --annotation "${{ steps.meta.outputs.labels }}" \
             $(printf '${{ env.REGISTRY_IMAGE }}@sha256:%s ' *)
 
       - name: Inspect image
