@@ -6,4 +6,4 @@ set(CMAKE_C_COMPILER clang-18)
 project(hello_world)
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(hello_world main.cpp)
+add_executable(hello_world src/main.cpp)
