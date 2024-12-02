@@ -16,6 +16,14 @@ jobs:
           - linux/amd64
           - linux/arm64
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: List root directory for debugging
+        run: ls -la
+
       - name: Prepare
         run: |
           platform=${{ matrix.platform }}
