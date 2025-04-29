@@ -1,7 +1,11 @@
 name: ci
 
 on:
-  push:
+  pull_request:
+      branches: 
+        - main
+  workflow_dispatch:
+  
 
 env:
   REGISTRY_IMAGE: ghcr.io/lachdawine/devcontainer-cpp
